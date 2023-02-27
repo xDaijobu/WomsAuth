@@ -8,4 +8,3 @@ namespace WomsAuth;
 public class MainActivity : MauiAppCompatActivity
 {
 }
-

@@ -3,6 +3,48 @@
     x:Class="WomsAuth.MainPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:local="clr-namespace:WomsAuth"
-    BackgroundColor="{DynamicResource PageBackgroundColor}" />
+    xmlns:models="clr-namespace:WomsAuth.Models"
+    BackgroundColor="{DynamicResource PageBackgroundColor}">
+    <CollectionView ItemsSource="{Binding Auths}">
+        <CollectionView.ItemsLayout>
+            <LinearItemsLayout ItemSpacing="5" Orientation="Vertical" />
+        </CollectionView.ItemsLayout>
+        <CollectionView.ItemTemplate>
+            <DataTemplate x:DataType="models:AuthModel">
+                <VerticalStackLayout>
+                    <Label FontSize="Title" Text="{Binding Title}" />
+                    <Label FontSize="Subtitle" Text="{Binding Description}" />
+                    <Label FontSize="Subtitle" Text="{Binding Code}" />
+                    <Label FontSize="Subtitle" Text="{Binding RemainingSeconds}" />
+                    <!--<ProgressBar Progress="{Binding CurrentProgress}" ProgressColor="Red" />-->
+
+
+                    <Grid>
+                        <GraphicsView
+                            x:Name="ProgressView1"
+                            BackgroundColor="{StaticResource Primary}"
+                            HeightRequest="100"
+                            WidthRequest="100" />
+                        <Button
+                            x:Name="ProgressButton1"
+                            BackgroundColor="{StaticResource Primary}"
+                            BorderWidth="0"
+                            CornerRadius="40"
+                            FontFamily="fa-regular"
+                            FontSize="32"
+                            HeightRequest="80"
+                            HorizontalOptions="Center"
+                            Text=""
+                            WidthRequest="80" />
+                    </Grid>
+                    <!--<BlazorWebView HeightRequest="350" x:Name="lineMultiAxes" HostPage="wwwroot/index.html" Grid.Row="0">
+                        <BlazorWebView.RootComponents>
+                            <RootComponent x:Name="BlazorComponent2" Selector="#app" ComponentType="{x:Type local:LineMultiAxesRouter}" />
+                        </BlazorWebView.RootComponents>
+                    </BlazorWebView>-->
+                </VerticalStackLayout>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+    </CollectionView>
+</ContentPage>
 
