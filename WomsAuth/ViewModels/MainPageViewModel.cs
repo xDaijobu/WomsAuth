@@ -44,7 +44,7 @@ public partial class MainPageViewModel : BaseViewModel
         timer.Start();
         timer.Elapsed += (s, e) =>
         {
-            Debug.WriteLine("Elapsed: " + e.SignalTime);
+            //Debug.WriteLine("Elapsed: " + e.SignalTime);
 
             Parallel.ForEach(Auths, auth => { auth.UpdateRemainingSeconds(); });
         };

@@ -3,6 +3,7 @@
     x:Class="WomsAuth.MainPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:WomsAuth.Controls"
     xmlns:models="clr-namespace:WomsAuth.Models"
     BackgroundColor="{DynamicResource PageBackgroundColor}">
     <CollectionView ItemsSource="{Binding Auths}">
@@ -11,38 +12,33 @@
         </CollectionView.ItemsLayout>
         <CollectionView.ItemTemplate>
             <DataTemplate x:DataType="models:AuthModel">
-                <VerticalStackLayout>
-                    <Label FontSize="Title" Text="{Binding Title}" />
-                    <Label FontSize="Subtitle" Text="{Binding Description}" />
-                    <Label FontSize="Subtitle" Text="{Binding Code}" />
-                    <Label FontSize="Subtitle" Text="{Binding RemainingSeconds}" />
-                    <!--<ProgressBar Progress="{Binding CurrentProgress}" ProgressColor="Red" />-->
+                <Grid
+                    Margin="5"
+                    ColumnDefinitions="8*, 2*"
+                    RowDefinitions="85, Auto">
+                    <VerticalStackLayout
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        Margin="10,0,0,0">
+                        <Label FontSize="16" Text="{Binding Title}" />
+                        <Label FontSize="12" Text="{Binding Description}" />
+                        <Label FontSize="12" Text="{Binding Code}" />
+                        <Label FontSize="12" Text="{Binding RemainingSeconds}" />
+                    </VerticalStackLayout>
 
+                    <controls:CircularProgressBar
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        HorizontalOptions="End"
+                        Scale="0.25"
+                        Duration="{Binding DefaultStep}" />
 
-                    <Grid>
-                        <GraphicsView
-                            x:Name="ProgressView1"
-                            BackgroundColor="{StaticResource Primary}"
-                            HeightRequest="100"
-                            WidthRequest="100" />
-                        <Button
-                            x:Name="ProgressButton1"
-                            BackgroundColor="{StaticResource Primary}"
-                            BorderWidth="0"
-                            CornerRadius="40"
-                            FontFamily="fa-regular"
-                            FontSize="32"
-                            HeightRequest="80"
-                            HorizontalOptions="Center"
-                            Text=""
-                            WidthRequest="80" />
-                    </Grid>
-                    <!--<BlazorWebView HeightRequest="350" x:Name="lineMultiAxes" HostPage="wwwroot/index.html" Grid.Row="0">
-                        <BlazorWebView.RootComponents>
-                            <RootComponent x:Name="BlazorComponent2" Selector="#app" ComponentType="{x:Type local:LineMultiAxesRouter}" />
-                        </BlazorWebView.RootComponents>
-                    </BlazorWebView>-->
-                </VerticalStackLayout>
+                    <BoxView
+                        Grid.Row="1"
+                        Grid.ColumnSpan="2"
+                        HeightRequest="1"
+                        HorizontalOptions="Fill" />
+                </Grid>
             </DataTemplate>
         </CollectionView.ItemTemplate>
     </CollectionView>

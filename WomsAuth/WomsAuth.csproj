@@ -57,4 +57,16 @@
 		<PackageReference Include="CommunityToolkit.Maui.Core" Version="4.0.0" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Compile Update="Controls\CircularProgressBar.xaml.cs">
+	    <DependentUpon>CircularProgressBar.xaml</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Update="Controls\CircularProgressBar.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	</ItemGroup>
+
 </Project>
