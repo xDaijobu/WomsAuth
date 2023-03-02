@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Maui;
 using Microsoft.Extensions.Logging;
+using SkiaSharp.Views.Maui.Controls.Hosting;
 using SkiaSharp.Views.Maui.Handlers;
 using Syncfusion.Maui.Core.Hosting;
 using WomsAuth.Controls;
@@ -16,6 +17,7 @@ public static class MauiProgram
 			.UseMauiApp<App>()
             .UseMauiCommunityToolkit()
             .UseBarcodeReader()
+            .UseSkiaSharp()
             .ConfigureMauiHandlers(h =>
             {
                 h.AddHandler<CircularProgressBar, SKCanvasViewHandler>();

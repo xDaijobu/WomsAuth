@@ -16,12 +16,15 @@
                 <SwipeView>
                     <SwipeView.RightItems>
                         <SwipeItems>
-                            <SwipeItem
-                                BackgroundColor="LightPink"
-                                Command="{Binding Path=BindingContext.DeleteAuthCommand, Source={x:Reference listView}}"
-                                CommandParameter="{Binding .}"
-                                IconImageSource="delete.png"
-                                Text="Delete" />
+                            <SwipeItemView Command="{Binding Path=BindingContext.DeleteAuthCommand, Source={x:Reference listView}}" CommandParameter="{Binding .}">
+                                <Grid Background="Red" RowDefinitions="*">
+                                    <VerticalStackLayout VerticalOptions="Center">
+                                        <Image Source="trash.png" />
+                                        <Label HorizontalOptions="Center" Text="Delete" />
+                                    </VerticalStackLayout>
+                                </Grid>
+                            </SwipeItemView>
+
                         </SwipeItems>
                     </SwipeView.RightItems>
                     <!--  Content  -->
@@ -38,35 +41,36 @@
                                 FontAttributes="Bold"
                                 FontSize="12"
                                 Text="{Binding Description}" />
-                            <Grid ColumnDefinitions="Auto, Auto" RowDefinitions="Auto">
+                            <Grid
+                                ColumnDefinitions="Auto, Auto"
+                                ColumnSpacing="0"
+                                RowDefinitions="Auto">
                                 <Label
                                     Grid.Row="0"
                                     Grid.Column="0"
                                     FontSize="55"
                                     Text="{Binding Code}"
                                     TextColor="{StaticResource Primary}" />
-                                <progressBar:SfCircularProgressBar
-                                    Grid.Row="0"
-                                    Grid.Column="1"
-                                    Margin="10,0,0,0"
-                                    AnimationEasing="{x:Static Easing.CubicInOut}"
-                                    HeightRequest="50"
-                                    Maximum="{Binding DefaultStep}"
-                                    Minimum="0"
-                                    Progress="{Binding RemainingSeconds}"
-                                    RotationY="180"
-                                    WidthRequest="50">
-                                    <progressBar:SfCircularProgressBar.Content>
-                                        <Label
-                                            FontSize="{OnPlatform Android=8,
-                                                                  WinUI=6,
-                                                                  iOS=10}"
-                                            HorizontalTextAlignment="Center"
-                                            RotationY="180"
-                                            Text="{Binding RemainingSeconds}"
-                                            VerticalTextAlignment="Center" />
-                                    </progressBar:SfCircularProgressBar.Content>
-                                </progressBar:SfCircularProgressBar>
+                                <Grid Grid.Row="0" Grid.Column="1">
+                                    <progressBar:SfCircularProgressBar
+                                        Margin="0,0,0,0"
+                                        AnimationEasing="{x:Static Easing.CubicInOut}"
+                                        HeightRequest="50"
+                                        Maximum="{Binding DefaultStep}"
+                                        Minimum="0"
+                                        Progress="{Binding RemainingSeconds}"
+                                        RotationY="180"
+                                        Scale="0.95" />
+
+                                    <Label
+                                        FontSize="{OnPlatform Android=10,
+                                                              WinUI=6,
+                                                              iOS=10}"
+                                        HorizontalTextAlignment="Center"
+                                        Text="{Binding RemainingSeconds}"
+                                        VerticalTextAlignment="Center" />
+                                </Grid>
+
                             </Grid>
 
                         </VerticalStackLayout>

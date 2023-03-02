@@ -29,18 +29,25 @@ public partial class BarcodeReaderView
 
     public AuthModel DecodePayload(string payload)
     {
-        var uri = new Uri(payload);
-        if (uri.Scheme == "otpauth")
+        try
         {
-            var queryString = HttpUtility.ParseQueryString(uri.Query);
-            var secret = queryString["secret"];
-            var account = uri.LocalPath.StartsWith("/") ? uri.LocalPath.Substring(1) : uri.LocalPath;
+            var uri = new Uri(payload);
+            if (uri.Scheme == "otpauth")
+            {
+                var queryString = HttpUtility.ParseQueryString(uri.Query);
+                var secret = queryString["secret"];
+                var account = uri.LocalPath.StartsWith("/") ? uri.LocalPath.Substring(1) : uri.LocalPath;
+                var issuer = queryString["issuer"];
+                //var title = account.Split(":").FirstOrDefault();
+                var description = account.Split(":").LastOrDefault();
+                var auth = new AuthModel(secret, issuer, description);
 
-            var title = account.Split(":").FirstOrDefault();
-            var description = account.Split(":").LastOrDefault();
-            var auth = new AuthModel(secret, title, description);
-
-            return auth;
+                return auth;
+            }
+        }
+        catch (Exception e)
+        {
+            return null;
         }
 
         return null;
