@@ -1,8 +1,4 @@
 ﻿using OtpNet;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using CommunityToolkit.Mvvm.Input;
 using WomsAuth.Database;
 using Timer = System.Timers.Timer;

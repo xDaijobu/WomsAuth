@@ -1,7 +1,6 @@
 using SkiaSharp.Views.Maui;
 using SkiaSharp;
 using System.Diagnostics;
-using SkiaSharp.Views.Maui.Controls;
 
 namespace WomsAuth.Controls;
 

@@ -2,7 +2,5 @@
     x:Class="WomsAuth.WinUI.App"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:maui="using:Microsoft.Maui"
-    xmlns:local="using:WomsAuth.WinUI">
-
-</maui:MauiWinUIApplication>
+    xmlns:local="using:WomsAuth.WinUI"
+    xmlns:maui="using:Microsoft.Maui" />
