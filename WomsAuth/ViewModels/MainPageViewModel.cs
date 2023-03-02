@@ -36,7 +36,7 @@ public partial class MainPageViewModel : BaseViewModel
     {
         //var auth = new AuthModel("MY3WEYJTMI4TMNZQMZRTQYJWHE2TCMZYGZRDKZJTG5SWKNRYMIYTMNBYMY3DEOJV",
         //    "Semen3roda.com Cristover Wurangian", "IIA7");
-        //await authDatabase.SaveItemAsync(auth);
+        //
         //Auths.Add(auth);
 
         TaskCompletionSource<AuthModel> tcsAuth = new TaskCompletionSource<AuthModel>();
@@ -45,7 +45,11 @@ public partial class MainPageViewModel : BaseViewModel
         var auth = await tcsAuth.Task;
 
         if (auth != null)
+        {
             Auths.Add(auth);
+
+            await authDatabase.SaveItemAsync(auth);
+        }
     }
 
     [RelayCommand]
