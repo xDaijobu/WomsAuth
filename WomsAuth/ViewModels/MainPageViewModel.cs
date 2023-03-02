@@ -40,7 +40,7 @@ public partial class MainPageViewModel : BaseViewModel
         //Auths.Add(auth);
 
         TaskCompletionSource<AuthModel> tcsAuth = new TaskCompletionSource<AuthModel>();
-        await App.Current.MainPage.Navigation.PushModalAsync(new BarcodeReaderView(tcsAuth));
+        await App.Current.MainPage.Navigation.PushAsync(new BarcodeReaderView(tcsAuth));
 
         var auth = await tcsAuth.Task;
 

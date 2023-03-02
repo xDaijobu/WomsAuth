@@ -3,6 +3,7 @@
     x:Class="WomsAuth.MainPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:behaviors="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     xmlns:compatibility="clr-namespace:Microsoft.Maui.Controls.Compatibility;assembly=Microsoft.Maui.Controls"
     xmlns:models="clr-namespace:WomsAuth.Models"
     xmlns:progressBar="clr-namespace:Syncfusion.Maui.ProgressBar;assembly=Syncfusion.Maui.ProgressBar"
@@ -19,7 +20,11 @@
                             <SwipeItemView Command="{Binding Path=BindingContext.DeleteAuthCommand, Source={x:Reference listView}}" CommandParameter="{Binding .}">
                                 <Grid Background="Red" RowDefinitions="*">
                                     <VerticalStackLayout VerticalOptions="Center">
-                                        <Image Source="trash.png" />
+                                        <Image Source="trash.png">
+                                            <Image.Behaviors>
+                                                <behaviors:IconTintColorBehavior TintColor="White" />
+                                            </Image.Behaviors>
+                                        </Image>
                                         <Label HorizontalOptions="Center" Text="Delete" />
                                     </VerticalStackLayout>
                                 </Grid>

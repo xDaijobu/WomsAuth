@@ -9,11 +9,20 @@ namespace WomsAuth.Pages;
 
 public partial class BarcodeReaderView
 {
+    private AuthModel authModel;
     private TaskCompletionSource<AuthModel> tcsAuth;
-	public BarcodeReaderView(TaskCompletionSource<AuthModel> tcsAuth)
+	
+    public BarcodeReaderView(TaskCompletionSource<AuthModel> tcsAuth)
 	{
 		InitializeComponent();
         this.tcsAuth = tcsAuth;
+    }
+
+    protected override void OnDisappearing()
+    {
+        base.OnDisappearing();
+
+        tcsAuth.SetResult(authModel);
     }
 
     protected void BarcodesDetected(object sender, BarcodeDetectionEventArgs e)
@@ -21,10 +30,9 @@ public partial class BarcodeReaderView
         Debug.WriteLine($"CRIS: {e.Results[0].Format}->{e.Results[0].Format}");
         barcodeView.IsDetecting = false;
 
-        var auth = DecodePayload(e.Results[0].Value);
+        authModel = DecodePayload(e.Results[0].Value);
 
-        tcsAuth.SetResult(auth);
-        Navigation.PopModalAsync();
+        Navigation.PopAsync();
     }
 
     public AuthModel DecodePayload(string payload)
