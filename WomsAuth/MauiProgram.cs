@@ -1,5 +1,9 @@
 ﻿using CommunityToolkit.Maui;
 using Microsoft.Extensions.Logging;
+using SkiaSharp.Views.Maui.Handlers;
+using Syncfusion.Maui.Core.Hosting;
+using WomsAuth.Controls;
+using ZXing.Net.Maui.Controls;
 
 namespace WomsAuth;
 
@@ -11,6 +15,12 @@ public static class MauiProgram
 		builder
 			.UseMauiApp<App>()
             .UseMauiCommunityToolkit()
+            .UseBarcodeReader()
+            .ConfigureMauiHandlers(h =>
+            {
+                h.AddHandler<CircularProgressBar, SKCanvasViewHandler>();
+            })
+            .ConfigureSyncfusionCore()
             .ConfigureFonts(fonts =>
 			{
 				fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
