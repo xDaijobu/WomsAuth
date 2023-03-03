@@ -51,6 +51,7 @@ public partial class MainPageViewModel : BaseViewModel
     [RelayCommand]
     private async Task DeleteAuth(AuthModel auth)
     {
+        System.Diagnostics.Debug.WriteLine("Fire deleteAuth");
         await authDatabase.DeleteItemAsync(auth);
 
         Auths.Remove(Auths.FirstOrDefault(i => i.Id == auth.Id));
@@ -72,7 +73,6 @@ public partial class MainPageViewModel : BaseViewModel
         timer.Start();
         timer.Elapsed += (s, e) =>
         {
-            Debug.WriteLine("Elapsed: " + e.SignalTime);
 
             _ = Task.Run(() =>
             {
